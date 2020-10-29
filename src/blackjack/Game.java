@@ -1,12 +1,18 @@
 package blackjack;
 
+import java.util.Scanner;
+
 public class Game {
 	
+	static Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		BlackjackGame.init();
+		BlackjackGame.init(sc);
 		BlackjackGame game = new BlackjackGame();
 		game.dealHands();
-		game.runGame();
+		game.takeBets(sc);
+		game.runGame(sc);
+		sc.close();
 	}
 
 }

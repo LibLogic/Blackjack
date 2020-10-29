@@ -1,17 +1,13 @@
-package blackjack;
+package card_game;
 
 import java.util.ArrayList;
 
+import blackjack.CardNames;
+import blackjack.CardSuits;
+
 public class Deck {
-	
+
 	private static ArrayList<Card> deck = new ArrayList<>();
-	
-	public static void init() {
-		createDeck();
-		BlackjackMapping blackjackMapping = new BlackjackMapping();
-		blackjackMapping.mapCardValues(deck);
-		shuffleDeck();
-	}
 	
 	public static void createDeck() {
 		for(CardSuits suit : CardSuits.values()) {
@@ -43,4 +39,5 @@ public class Deck {
 		}
 		return cardList;
 	}
+
 }

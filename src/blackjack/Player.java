@@ -2,11 +2,15 @@ package blackjack;
 
 import java.util.ArrayList;
 
+import card_game.Card;
+
 public class Player {
 	
 	private int id;
 	private String name;
-	private double availableCash = 100.00;
+	private double bet;
+	private int score;
+	private double funds = 100.00;
 	private ArrayList<Card> hand = new ArrayList<>();
 	
 	public Player () {}
@@ -15,35 +19,64 @@ public class Player {
 		this.id = id;
 		this.name = name;
 	}
-	
-	public Player (int id, String name, double availableCash) {
+
+	public Player (int id, String name, double funds) {
 		this.id = id;
 		this.name = name;
-		this.availableCash = availableCash;
+		this.funds = funds;
 	}
 	
-	public void setAvailableCash(double availableCash){
-		this.availableCash = availableCash;
+	public double getFunds(){
+		return funds;
 	}
 	
-	public ArrayList<Card> getHand() {
-		return hand;
+	public void setFunds(double funds){
+		this.funds = funds;
 	}
-
+	
+	public Object getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
+	}
+	
+	public double getBet() {
+		return bet;
+	}
+
+	public void setBet(double bet) {
+		this.bet = bet;
+	}
+
+	public ArrayList<Card> getHand() {
+		return hand;
 	}
 	
 	public void setHand(ArrayList<Card> hand) {
 		this.hand = hand;
 	}
 	
+	public void clearHand() {
+		this.hand.clear();
+	}
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	public void printHand() {
 		System.out.println(hand);
 	}
 
 	public String toString() {
-		String result = String.format("Player %d \"%s\" has %.2f in available cash.", this.id, this.name, this.availableCash);
+		String result = String.format("Player %d \"%s\" has %.2f in available cash.", this.id, this.name, this.funds);
 		return result;
 	}
+
+
 }

@@ -1,4 +1,7 @@
-package blackjack;
+package card_game;
+
+import blackjack.CardNames;
+import blackjack.CardSuits;
 
 public class Card {
 	

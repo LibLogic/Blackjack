@@ -1,11 +1,11 @@
-package blackjack;
+package card_game;
 
 import java.util.ArrayList;
 
 public class Hand implements DrawHand {
 	
-	ArrayList<Card> deck = Deck.getDeck();
-	ArrayList<Card> hand = new ArrayList<>();
+	protected ArrayList<Card> deck = Deck.getDeck();
+	protected ArrayList<Card> hand = new ArrayList<>();
 	
 	public ArrayList<Card> drawHand(int handSize) {
 		for(int i = 0; i < handSize; i++) {
