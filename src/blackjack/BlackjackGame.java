@@ -93,15 +93,12 @@ public class BlackjackGame implements DealsHands, TakesBets {
 
 	private void runRound(Player currentPlayer, Scanner sc) {
 		int score = 0;
-		int aceCount = 0;
 		ArrayList<Card> currentHand = currentPlayer.getHand();
 		String currentPlayerName = "Dealer";
 		
 		for(Card card : currentHand) {
-			aceCount = 0;
 			int cardValue = BlackjackDeck.lookupCardValues(card);
 			if (cardValue == 11) {
-				aceCount++;
 			}
 			score += cardValue;
 		}
