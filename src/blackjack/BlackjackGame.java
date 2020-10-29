@@ -27,15 +27,11 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		System.out.print("\nEnter the dealers' initial cash amount\nor <ENTER> for 500.00 default: ");
 
 		String cash1 = sc.nextLine();
-		if(cash1.equals("")) {
-			dealer = new Dealer(dealerName);
-		} else { 
-			try {
-			Double dealerCash = Double.parseDouble(cash1);
-			dealer = new Dealer(dealerName, dealerCash);
-			} catch(NumberFormatException e) {
-				dealer = new Dealer(dealerName, 500.00);
-			}
+		try {
+		Double dealerCash = Double.parseDouble(cash1);
+		dealer = new Dealer(dealerName, dealerCash);
+		} catch(NumberFormatException e) {
+			dealer = new Dealer(dealerName, 500.00);
 		}
 
 		int id = 1;
@@ -48,10 +44,10 @@ public class BlackjackGame implements DealsHands, TakesBets {
 			}
 			System.out.print("\nEnter the players' initial cash amount\nor <ENTER> for 100.00 default: ");
 			String cash2 = sc.nextLine();
-			if(cash2.equals("")) {
-				players.put(id, new Player(id, name));
-				id++;
-			} else {
+//			if(cash2.equals("")) {
+//				players.put(id, new Player(id, name));
+//				id++;
+//			} else {
 				try {
 				Double playerCash = Double.parseDouble(cash2);
 				players.put(id, new Player(id, name, playerCash));
@@ -59,7 +55,7 @@ public class BlackjackGame implements DealsHands, TakesBets {
 				} catch(NumberFormatException e) {
 					players.put(id, new Player(id, name, 100.00));
 				}
-			}
+//			}
 		} while(!name.equals(""));
 		
 		System.out.println("\n---------------------------------------------------");
@@ -74,8 +70,15 @@ public class BlackjackGame implements DealsHands, TakesBets {
 	public void takeBets(Scanner sc) {
 		for(Player p : players.values()) {
 			System.out.print(p.getName() + " place your bet. ");
-			double betAmount = Double.parseDouble(sc.nextLine());
-			p.setBet(betAmount);
+			while(true) {
+				try {
+				double betAmount = Double.parseDouble(sc.nextLine());
+				p.setBet(betAmount);
+				break;
+				} catch(NumberFormatException e) {
+					System.out.println("Please enter a bet amount: ");
+				}
+			}
 		}
 		System.out.println();
 	}
