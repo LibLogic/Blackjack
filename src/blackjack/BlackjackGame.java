@@ -30,8 +30,12 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		if(cash1.equals("")) {
 			dealer = new Dealer(dealerName);
 		} else { 
+			try {
 			Double dealerCash = Double.parseDouble(cash1);
 			dealer = new Dealer(dealerName, dealerCash);
+			} catch(NumberFormatException e) {
+				dealer = new Dealer(dealerName, 500.00);
+			}
 		}
 
 		int id = 1;
@@ -48,9 +52,13 @@ public class BlackjackGame implements DealsHands, TakesBets {
 				players.put(id, new Player(id, name));
 				id++;
 			} else {
+				try {
 				Double playerCash = Double.parseDouble(cash2);
 				players.put(id, new Player(id, name, playerCash));
 				id++;
+				} catch(NumberFormatException e) {
+					players.put(id, new Player(id, name, 100.00));
+				}
 			}
 		} while(!name.equals(""));
 		
