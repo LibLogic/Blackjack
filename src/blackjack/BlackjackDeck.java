@@ -7,12 +7,11 @@ import java.util.Map;
 import card_game.Card;
 import card_game.Deck;
 
-public class BlackjackDeck extends Deck implements mapValues {
+public class BlackjackDeck extends Deck implements mapBlackjackValues {
 	
 	private static Map<Card, Integer> blackjackMap = new HashMap<>();
 
 	public static void init() {
-		createDeck();
 		BlackjackDeck blackjackDeck = new BlackjackDeck();
 		blackjackDeck.mapCardValues(Deck.getDeck());
 		shuffleDeck();
