@@ -28,11 +28,12 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		System.out.print("\nEnter the dealers' initial cash amount\nor <ENTER> for 500.00 default: ");
 
 		String cash1 = sc.nextLine();
-		try {
-		Double dealerCash = Double.parseDouble(cash1);
-		dealer = new Dealer(dealerName, dealerCash);
-		} catch(NumberFormatException e) {
-			dealer = new Dealer(dealerName, 500.00);
+
+		if(cash1.equals("")) {
+			dealer = new Dealer(dealerName);
+		} else { 
+			Double dealerCash = Double.parseDouble(cash1);
+			dealer = new Dealer(dealerName, dealerCash);
 		}
 
 		int id = 1;
@@ -45,12 +46,13 @@ public class BlackjackGame implements DealsHands, TakesBets {
 			}
 			System.out.print("\nEnter the players' initial cash amount\nor <ENTER> for 100.00 default: ");
 			String cash2 = sc.nextLine();
-			try {
-			Double playerCash = Double.parseDouble(cash2);
-			players.put(id, new Player(id, name, playerCash));
-			id++;
-			} catch(NumberFormatException e) {
-				players.put(id, new Player(id, name, 100.00));
+			if(cash2.equals("")) {
+				players.put(id, new Player(id, name));
+				id++;
+			} else {
+				Double playerCash = Double.parseDouble(cash2);
+				players.put(id, new Player(id, name, playerCash));
+				id++;
 			}
 		} while(!name.equals(""));
 		
