@@ -18,7 +18,7 @@ public class Deck {
 		}
 	}
 	
-	public static void shuffleDeck() {
+	protected static void shuffleDeck() {
 		Collections.shuffle(deck);;
 	}
 	

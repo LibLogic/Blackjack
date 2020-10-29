@@ -11,9 +11,8 @@ public class BlackjackDeck extends Deck implements mapBlackjackValues {
 	
 	private static Map<Card, Integer> blackjackMap = new HashMap<>();
 
-	public static void init() {
-		BlackjackDeck blackjackDeck = new BlackjackDeck();
-		blackjackDeck.mapCardValues(Deck.getDeck());
+	public void init() {
+		mapCardValues(Deck.getDeck());
 		shuffleDeck();
 	}
 

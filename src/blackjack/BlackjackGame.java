@@ -19,7 +19,8 @@ public class BlackjackGame implements DealsHands, TakesBets {
 	
 	public static void init(Scanner sc) {
 
-		BlackjackDeck.init();
+		BlackjackDeck blackjackDeck = new BlackjackDeck();
+		blackjackDeck.init();
 		System.out.println("Game Setup");
 		
 		System.out.print("\nEnter the dealers' first name\nor <ENTER> for an anonymous dealer: ");
@@ -44,18 +45,13 @@ public class BlackjackGame implements DealsHands, TakesBets {
 			}
 			System.out.print("\nEnter the players' initial cash amount\nor <ENTER> for 100.00 default: ");
 			String cash2 = sc.nextLine();
-//			if(cash2.equals("")) {
-//				players.put(id, new Player(id, name));
-//				id++;
-//			} else {
-				try {
-				Double playerCash = Double.parseDouble(cash2);
-				players.put(id, new Player(id, name, playerCash));
-				id++;
-				} catch(NumberFormatException e) {
-					players.put(id, new Player(id, name, 100.00));
-				}
-//			}
+			try {
+			Double playerCash = Double.parseDouble(cash2);
+			players.put(id, new Player(id, name, playerCash));
+			id++;
+			} catch(NumberFormatException e) {
+				players.put(id, new Player(id, name, 100.00));
+			}
 		} while(!name.equals(""));
 		
 		System.out.println("\n---------------------------------------------------");
@@ -244,5 +240,4 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		}
 		return playersString;
 	}
-
 }
