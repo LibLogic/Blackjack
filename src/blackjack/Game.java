@@ -11,7 +11,7 @@ public class Game {
 		BlackjackGame game = new BlackjackGame();
 		game.dealHands();
 		game.takeBets(sc);
-		game.runGame(sc);
+		game.doRounds(sc);
 		sc.close();
 	}
 
