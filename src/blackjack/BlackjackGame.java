@@ -86,10 +86,8 @@ public class BlackjackGame implements DealsHands, TakesBets {
 
 	@Override
 	public void takeBets(Scanner sc) {
-		for(Player p : players.values()) {
-//			
-			System.out.print(p.getName() + " place your bet.\t");
-//
+		for(Player p : players.values()) {			
+			System.out.printf("%-26s", p.getName() + " place your bet.");
 			while(true) {
 				try {
 				double betAmount = Double.parseDouble(sc.nextLine());
@@ -126,14 +124,10 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		
 		if(!(currentPlayer.getId() == null)) {
 			currentPlayerName = currentPlayer.getName();
-//			
-			System.out.println("Dealers' hand -->\t[HIDDEN-CARD, " + dealer.getHand().get(1) + "]");
-//		
+			System.out.printf("%-28s%s%n", "Dealers' hand -->", "[HIDDEN-CARD, " + dealer.getHand().get(1));	
 		}
 		if(currentHand.size() == 2 && score == 21) {
-//			
-			System.out.println(currentPlayerName + " got Blackjack!\t" + currentHand + " --> Blackjack!\n");
-//			
+			System.out.printf("%-28s%s%n", currentPlayerName + " got Blackjack!", currentHand + "--> Blackjack" );			
 			double amount = currentPlayer.getBet();
 			double playerFunds = currentPlayer.getFunds();
 			double dealerFunds = dealer.getFunds();
@@ -143,9 +137,7 @@ public class BlackjackGame implements DealsHands, TakesBets {
 			currentPlayer.setFunds(playerFunds);
 			currentPlayer.setScore(21);
 		} else {
-//
-			System.out.println(currentPlayerName + "s' hand -->   \t" + currentHand + " --> " + score);
-//		
+			System.out.printf("%-28s%s%n" , currentPlayerName + "s' hand -->", currentHand + " --> " + score);
 		}
 		
 		if(currentPlayer.getId() == null) {
@@ -160,7 +152,7 @@ public class BlackjackGame implements DealsHands, TakesBets {
 					score = checkAces(currentHand, acesSeen, score);
 				}
 //				
-				System.out.println("Hit -->\t\t\t\t" + currentHand + " --> " + score);
+				System.out.printf("%-28s%s%n", "Hit -->", currentHand + " --> " + score);
 				dealer.setScore(score);
 				
 				if(score > 21) {
@@ -189,13 +181,13 @@ public class BlackjackGame implements DealsHands, TakesBets {
 			}
 			System.out.println("\n---------------------------------------------------");
 //			
-			System.out.print("Dealers' score:\t\t" + dealer.getScore());
-			System.out.printf("\tAvailable funds:\t%.2f", dealer.getFunds());
+			System.out.printf("%-28s%-8d", "Dealers' score: ", dealer.getScore());
+			System.out.printf("%s%.2f%n", "Available funds: ", dealer.getFunds());
 //			
 			for(Player p : players.values()) {
 //				
-				System.out.print("\n" + p.getName() + "s' score:\t\t" + p.getScore());
-				System.out.printf("\tAvailable funds:\t%.2f", p.getFunds());
+				System.out.printf("%-28s%-8d", p.getName() + "s' score: ", p.getScore());
+				System.out.printf("%s%.2f%n", "Available funds: ", p.getFunds());
 //				
 			}
 			for(Player p : players.values()) {
@@ -227,11 +219,10 @@ public class BlackjackGame implements DealsHands, TakesBets {
 				
 				if(score > 21) {
 					score = checkAces(currentHand, acesSeen, score);
-				}
-//				
-				System.out.println("Dealers' hand --> \t[HIDDEN-CARD, " + dealer.getHand().get(1) + "]");
-				System.out.println(currentPlayerName + "s' hand -->\t\t" + currentHand + " --> " + score);
-//				
+				}			
+				System.out.printf("%-28s%s]%n", "Dealers' hand -->", "[HIDDEN-CARD, " + dealer.getHand().get(1));	
+				System.out.printf("%-28s%s%n", currentPlayerName + "s' hand -->", currentHand + " --> " + score);
+			
 				if(score > 21) {
 					System.out.println("\n ***BUSTED***\n");
 					double dealerFunds = dealer.getFunds();
@@ -262,7 +253,7 @@ public class BlackjackGame implements DealsHands, TakesBets {
 		for(Card c : currentHand) {
 			if(BlackjackDeck.lookupCardValues(c) == 11) {
 				String ace = c.toString();
-				if(!acesSeen.containsKey(ace)) {
+				if(!(acesSeen.containsKey(ace)) && score + 11 != 21) {
 					acesSeen.put(ace, 0);
 					score -= 10;
 				}
